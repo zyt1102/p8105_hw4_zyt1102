@@ -1,0 +1,46 @@
+---
+title: "problem 2"
+author: "zyt1102"
+date: "11/4/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(p8105.datasets)
+library(plotly)
+library(flexdashboard)
+library(htmlwidgets)
+```
+
+```{r}
+data("instacart")
+instacart = 
+  instacart %>% 
+  slice(1:100) # select only 100 rows
+```
+
+# Chart A - Plot for counts
+```{r}
+instacart %>%
+  count(aisle, name = "n_obs") %>% 
+  ggplot(aes(x = aisle, y = n_obs))+
+  geom_point() +
+  coord_flip() +
+  ggtitle("") +
+  xlab("aisle name") + ylab("number of items")
+```
+# Chart B - Barplot
+```{r}
+instacart %>% 
+  count(department) %>% 
+  mutate(department = fct_reorder(department, n)) %>% 
+  plot_ly(x = ~department, y = ~n, color = ~department, type = "bar", colors = "viridis")
+```
+# Chart C - Boxplot
+```{r}
+instacart %>% 
+  mutate(department = fct_reorder(department, order_hour_of_day)) %>% 
+  plot_ly(y = ~order_hour_of_day, color = ~department, type = "box", colors = "viridis")
+```
+
