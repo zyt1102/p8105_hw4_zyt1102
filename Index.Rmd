@@ -1,0 +1,22 @@
+---
+title: "Index"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+# Welcome to my website!
+
+My name is Yitian Zhang. I am a biostat student. I love kitties!
+
+![](https://media.giphy.com/media/VIPdgcooFJHtC/giphy.gif)
+
+# If you want to kown more about me
+
+If you want know more about me, please click this link to check my personal experience.[Experience](experience.html) page. 
+
+Also, this link will navigate you to my homework 4 Problem 2[Dashboard](Dashboard.html) page. 
+
+If you want know more about my current university, please check this link [Mailman School of Public Health](https://www.publichealth.columbia.edu/).
+

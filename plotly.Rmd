@@ -1,0 +1,46 @@
+---
+title: "Plotly"
+output: html_document
+---
+
+## Dataset
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(p8105.datasets)
+library(plotly)
+library(flexdashboard)
+library(htmlwidgets)
+```
+
+## Make a Plot
+```{r}
+data("instacart")
+instacart = 
+  instacart %>% 
+  slice(1:100) # select only 100 rows
+```
+
+```{r}
+instacart %>%
+  count(aisle, name = "n_obs") %>% 
+  ggplot(aes(x = aisle, y = n_obs))+
+  geom_point() +
+  coord_flip() +
+  ggtitle("") +
+  xlab("aisle name") + ylab("number of items")
+```
+
+```{r}
+instacart %>% 
+  count(department) %>% 
+  mutate(department = fct_reorder(department, n)) %>% 
+  plot_ly(x = ~department, y = ~n, color = ~department, type = "bar", colors = "viridis")
+```
+
+```{r}
+instacart %>% 
+  mutate(department = fct_reorder(department, order_hour_of_day)) %>% 
+  plot_ly(y = ~order_hour_of_day, color = ~department, type = "box", colors = "viridis")
+```
+
